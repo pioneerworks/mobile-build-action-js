@@ -1,3 +1,52 @@
+# Homebase Mobile Build Action JS
+
+This action takes:
+- previousVersion: 
+
+It returns:
+- nextVersion (incremented build number)
+
+This is for all formatted version sequences:
+[v].[primary build].[secondary build].[patch (optional)].[build number][-r: release indicator]
+
+**For example: a regular feature build
+v.4.3.100
+
+4- primary version
+3- secondary version
+100 - build number
+
+**For example: a patch
+
+v.4.3.1.100
+4- primary version
+3- secondary version
+1- patch sequence
+100 - build number
+
+**For example: a release candidate
+
+v.4.3.1.100-r
+4- primary version
+3- secondary version
+1- patch sequence
+100 - build number
+
+
+# Usage
+You can now consume the action by referencing the v1 branch
+
+```yaml
+uses: actions/javascript-action@v1
+with:
+  milliseconds: 1000
+```
+
+See the [actions tab](https://github.com/actions/javascript-action/actions) for runs of this action! :rocket:
+
+# Develompent:
+For all maintainers, this action was written from the Github JS Action template:
+
 # Create a JavaScript Action
 
 <p align="center">
@@ -103,14 +152,4 @@ Your action is now published! :rocket:
 
 See the [versioning documentation](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md)
 
-## Usage
 
-You can now consume the action by referencing the v1 branch
-
-```yaml
-uses: actions/javascript-action@v1
-with:
-  milliseconds: 1000
-```
-
-See the [actions tab](https://github.com/actions/javascript-action/actions) for runs of this action! :rocket:
