@@ -37,7 +37,7 @@ v.4.3.1.100-r
 You can now consume the action by referencing the v1 branch
 
 ```yaml
-uses: actions/javascript-action@v1
+uses: actions/mobile-build-action-js@v1
 with:
   milliseconds: 1000
 ```
