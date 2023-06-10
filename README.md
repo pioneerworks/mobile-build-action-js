@@ -1,4 +1,4 @@
-# Homebase Mobile Build Action JS
+# Mobile Build Action JS
 
 This action takes:
 - previousVersion: 
@@ -9,7 +9,7 @@ It returns:
 This is for all formatted version sequences:
 [v].[primary build].[secondary build].[patch (optional)].[build number][-r: release indicator]
 
-**For example: a regular feature build
+**For example: a regular feature build**
 
 `v.4.3.100`
 
@@ -20,7 +20,7 @@ This is for all formatted version sequences:
 `100` - build number
 
 
-**For example: a patch
+**For example: a patch**
 
 `v.4.3.1.100`
 
@@ -32,7 +32,7 @@ This is for all formatted version sequences:
 
 `100` - build number
 
-**For example: a release candidate
+**For example: a release candidate**
 
 `v.4.3.100-rc`
 
@@ -56,7 +56,8 @@ with:
 
 See the [actions tab](https://github.com/actions/javascript-action/actions) for runs of this action! :rocket:
 
-# Develompent:
+# Development:
+
 For all maintainers, this action was written from the Github JS Action template:
 
 # Create a JavaScript Action
