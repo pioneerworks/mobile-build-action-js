@@ -51,7 +51,7 @@ You can now consume the action by referencing the v1 branch
 ```yaml
 uses: actions/mobile-build-action-js@v1
 with:
-  milliseconds: 1000
+  previousTag: "v.4.3.100"
 ```
 
 See the [actions tab](https://github.com/actions/javascript-action/actions) for runs of this action! :rocket:
