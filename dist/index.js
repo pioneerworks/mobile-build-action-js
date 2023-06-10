@@ -1,6 +1,33 @@
 require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ 421:
+/***/ ((module) => {
+
+let get_next_version = function (previous_tag) {
+    var buildArray = previous_tag.split(".");
+    var lastElem = buildArray[buildArray.length - 1];
+    var release = false;
+    var release_string = lastElem.substring (lastElem.length,lastElem.length-2)
+    if (release_string == '-r') {
+       release = true;
+       lastElem = lastElem.substring (0,lastElem.length-2);
+    }
+    var buildNumber = parseInt(lastElem);
+    buildNumber += 1;
+    buildArray[buildArray.length-1] = buildNumber;
+    var nextVersion = buildArray.join(".")
+    if (release) {
+      nextVersion += release_string 
+    }
+    return nextVersion;
+};
+
+module.exports = get_next_version;
+
+
+/***/ }),
+
 /***/ 351:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -2688,19 +2715,19 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ 258:
+/***/ 676:
 /***/ ((module) => {
 
-let wait = function (milliseconds) {
+let validate_inputs = function (previous_version) {
   return new Promise((resolve) => {
-    if (typeof milliseconds !== 'number') {
-      throw new Error('milliseconds not a number');
+    if (typeof previous_version !== 'string') {
+      throw new Error('previous_version is not a string');
     }
-    setTimeout(() => resolve("done!"), milliseconds)
+    setTimeout(() => resolve("done!"), previous_version)
   });
 };
 
-module.exports = wait;
+module.exports = validate_inputs;
 
 
 /***/ }),
@@ -2835,22 +2862,24 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const core = __nccwpck_require__(186);
-const wait = __nccwpck_require__(258);
+const validate_input = __nccwpck_require__(676);
+const get_next_version = __nccwpck_require__(421); 
 
-
-// most @actions toolkit packages have async methods
 async function run() {
   try {
-    const ms = core.getInput('milliseconds');
-    core.info(`Waiting ${ms} milliseconds ...`);
+    const previousVersion = core.getInput('previousVersion');
+    core.info(`Got ${previousVersion} as previous version...`);
 
-    core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-    await wait(parseInt(ms));
+    core.debug((new Date()).toTimeString()); 
+
+    await validate_input(previousVersion);
     core.info((new Date()).toTimeString());
-
-    core.setOutput('time', new Date().toTimeString());
-  } catch (error) {
-    core.setFailed(error.message);
+    const result = await get_next_version(previousVersion);
+    console.log(result);
+    core.setOutput('nextVersion', result); 
+} catch (error) {
+   console.log(core.input) 
+   core.setFailed(error.message);
   }
 }
 
