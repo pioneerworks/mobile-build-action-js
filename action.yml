@@ -1,13 +1,13 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: 'Mobile Build'
+description: 'Increase build number of any previous version'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  previousVersion:  # id of input
+    description: 'Previous version for this build'
     required: true
-    default: '1000'
+    default: 'v.1.1.100'
 outputs:
-  time: # output will be available to future steps
-    description: 'The current time after waiting'
+  nextVersion: # output will be available to future steps
+    description: 'The next version with incremented build number'
 runs:
   using: 'node16'
   main: 'dist/index.js'

@@ -1,20 +1,22 @@
 const core = require('@actions/core');
-const wait = require('./wait');
+const validate_input = require('./validate_input');
+const get_next_version = require('./get_next_version'); 
 
-
-// most @actions toolkit packages have async methods
 async function run() {
   try {
-    const ms = core.getInput('milliseconds');
-    core.info(`Waiting ${ms} milliseconds ...`);
+    const previousVersion = core.getInput('previousVersion');
+    core.info(`Got ${previousVersion} as previous version...`);
 
-    core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-    await wait(parseInt(ms));
+    core.debug((new Date()).toTimeString()); 
+
+    await validate_input(previousVersion);
     core.info((new Date()).toTimeString());
-
-    core.setOutput('time', new Date().toTimeString());
-  } catch (error) {
-    core.setFailed(error.message);
+    const result = await get_next_version(previousVersion);
+    console.log(result);
+    core.setOutput('nextVersion', result); 
+} catch (error) {
+   console.log(core.input) 
+   core.setFailed(error.message);
   }
 }
 
