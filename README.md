@@ -10,27 +10,39 @@ This is for all formatted version sequences:
 [v].[primary build].[secondary build].[patch (optional)].[build number][-r: release indicator]
 
 **For example: a regular feature build
-v.4.3.100
 
-4- primary version
-3- secondary version
-100 - build number
+`v.4.3.100`
+
+`4`- primary version
+
+`3`- secondary version
+
+`100` - build number
+
 
 **For example: a patch
 
-v.4.3.1.100
-4- primary version
-3- secondary version
-1- patch sequence
-100 - build number
+`v.4.3.1.100`
+
+`4`- primary version
+
+`3`- secondary version
+
+`1`- patch sequence
+
+`100` - build number
 
 **For example: a release candidate
 
-v.4.3.1.100-r
-4- primary version
-3- secondary version
-1- patch sequence
-100 - build number
+`v.4.3.100-rc`
+
+`4`- primary version
+
+`3`- secondary version
+
+`100` - build number
+
+`-r` - a release candidate indicator
 
 
 # Usage
