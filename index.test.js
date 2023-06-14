@@ -10,12 +10,12 @@ test('throws invalid version, number', async () => {
 
 test('increments build: handles releases', async () => { 
   const result = get_next_version("v.3.10.200-r");
-  expect(result).toBe("v.3.10.201-r");
+  expect(result).toBe("v.3.10.201");
 });
 
 test('increments build: handles patches', async () => {
-  const result = get_next_version("v.3.10.1.200-r");
-  expect(result).toBe("v.3.10.1.201-r");
+  const result = get_next_version("v.3.10.1.200");
+  expect(result).toBe("v.3.10.1.201");
 });
 
 test('increments build: regular feature build', async () => {
