@@ -17,9 +17,6 @@ let get_next_version = function (previous_tag) {
     buildNumber += 1;
     buildArray[buildArray.length-1] = buildNumber;
     var nextVersion = buildArray.join(".")
-    if (release) {
-      nextVersion += release_string 
-    }
     return nextVersion;
 };
 
